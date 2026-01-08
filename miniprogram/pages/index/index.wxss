@@ -1,0 +1,235 @@
+/**
+ * Translation Mini Program - Main Page Styles
+ * 
+ * Layout Optimizations Applied:
+ * 1. Apple-style light gray background (#F2F2F7)
+ * 2. Square buttons (border-radius: 0) instead of rounded
+ * 3. Adjusted spacing for mobile (padding: 40rpx instead of 60px)
+ * 4. Responsive width for smaller screens
+ * 5. Native picker styling to match original select elements
+ * 6. Consistent border and typography styles
+ * 
+ * SECURITY: No API key input - uses secure backend proxy
+ */
+
+.container {
+  padding: 80rpx 40rpx;
+  min-height: 100vh;
+  background: #F2F2F7;
+  box-sizing: border-box;
+}
+
+/* ============================================
+   Language Controls
+   - Horizontal layout with picker + swap button
+   - Square swap button matching original design
+   ============================================ */
+.controls {
+  display: flex;
+  align-items: center;
+  gap: 24rpx;
+  margin-bottom: 48rpx;
+}
+
+.select-wrapper {
+  flex: 1;
+}
+
+.picker-display {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20rpx 24rpx;
+  border: 1rpx solid #e0e0e0;
+  background: transparent;
+  /* Square corners - key design change */
+  border-radius: 0;
+}
+
+.picker-text {
+  font-size: 28rpx;
+  color: #1a1a1a;
+  flex: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.picker-arrow {
+  font-size: 20rpx;
+  color: #666666;
+  margin-left: 12rpx;
+}
+
+/* Swap Button - Square design */
+.swap-btn {
+  width: 64rpx;
+  height: 64rpx;
+  border: 1rpx solid #e0e0e0;
+  background: transparent;
+  /* Square corners - key design change */
+  border-radius: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: transform 0.3s ease;
+}
+
+.swap-btn.rotating {
+  transform: rotate(180deg);
+}
+
+.swap-icon {
+  font-size: 32rpx;
+  color: #999999;
+}
+
+/* ============================================
+   Input Text Area
+   - Multi-line input with underline style
+   - Matches original textarea design
+   ============================================ */
+.input-wrapper {
+  margin-bottom: 36rpx;
+}
+
+.input-textarea {
+  width: 100%;
+  min-height: 280rpx;
+  padding: 24rpx 0;
+  border: none;
+  border-bottom: 1rpx solid #e0e0e0;
+  background: transparent;
+  font-size: 30rpx;
+  color: #1a1a1a;
+  line-height: 1.7;
+}
+
+.input-textarea::placeholder {
+  color: #cccccc;
+}
+
+/* ============================================
+   Translate Button
+   - Square design with gray background
+   - Disabled state styling
+   ============================================ */
+.translate-btn {
+  display: inline-block;
+  padding: 20rpx 48rpx;
+  border: none;
+  background: #d3d3d3;
+  color: #1a1a1a;
+  font-size: 30rpx;
+  text-align: center;
+  margin-bottom: 48rpx;
+  /* Square corners - key design change */
+  border-radius: 0;
+  line-height: 1.5;
+}
+
+.translate-btn::after {
+  border: none;
+}
+
+.translate-btn.disabled {
+  background: #e0e0e0;
+  color: #999999;
+}
+
+/* Active state */
+.translate-btn:active:not(.disabled) {
+  background: #a0a0a0;
+}
+
+/* ============================================
+   Output Area
+   - Displays translation result
+   - Different states: empty, loading, success, error
+   ============================================ */
+.output-wrapper {
+  margin-bottom: 24rpx;
+  position: relative;
+}
+
+.output-area {
+  width: 100%;
+  min-height: 280rpx;
+  padding: 24rpx 0;
+  border-bottom: 1rpx solid #e0e0e0;
+  font-size: 30rpx;
+  line-height: 1.7;
+  word-wrap: break-word;
+  white-space: pre-wrap;
+}
+
+/* Output states */
+.output-area.empty {
+  color: #cccccc;
+}
+
+.output-area.loading {
+  color: #999999;
+}
+
+.output-area.success {
+  color: #1a1a1a;
+}
+
+.output-area.error {
+  color: #e74c3c;
+}
+
+/* Copy Button */
+.copy-btn {
+  position: absolute;
+  right: 0;
+  bottom: 24rpx;
+  padding: 12rpx 24rpx;
+  background: #f0f0f0;
+  /* Square corners */
+  border-radius: 0;
+  font-size: 24rpx;
+  color: #666666;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+
+.copy-btn.visible {
+  opacity: 1;
+}
+
+/* ============================================
+   Explanation / Cultural Note
+   - Subtle gray text for additional context
+   ============================================ */
+.explanation {
+  padding: 16rpx 0;
+  font-size: 26rpx;
+  color: #999999;
+  line-height: 1.6;
+  margin-bottom: 36rpx;
+}
+
+/* ============================================
+   Responsive Adjustments
+   - Slightly reduce padding on very small screens
+   ============================================ */
+@media screen and (max-width: 320px) {
+  .container {
+    padding: 60rpx 32rpx;
+  }
+  
+  .controls {
+    gap: 16rpx;
+  }
+  
+  .picker-display {
+    padding: 16rpx 20rpx;
+  }
+  
+  .picker-text {
+    font-size: 26rpx;
+  }
+}

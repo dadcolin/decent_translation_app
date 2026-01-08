@@ -1,0 +1,96 @@
+<!--
+  Translation Mini Program - Main Page Template
+  
+  SECURITY: No API key input - uses secure backend proxy
+  
+  Layout Optimizations:
+  - Apple-style light gray background (#F2F2F7)
+  - Square buttons (border-radius: 0)
+  - Adjusted padding/spacing for mobile
+  - Picker components replace HTML select elements
+-->
+
+<view class="container">
+  <!-- Language Controls -->
+  <view class="controls">
+    <!-- Source Language Picker -->
+    <view class="select-wrapper">
+      <picker 
+        mode="selector" 
+        range="{{sourceLanguageLabels}}"
+        value="{{sourceLangIndex}}"
+        bindchange="onSourceLangChange"
+      >
+        <view class="picker-display">
+          <text class="picker-text">{{currentSourceLabel}}</text>
+          <text class="picker-arrow">▼</text>
+        </view>
+      </picker>
+    </view>
+
+    <!-- Swap Button -->
+    <view 
+      class="swap-btn {{swapAnimating ? 'rotating' : ''}}" 
+      bindtap="onSwapLanguages"
+    >
+      <text class="swap-icon">⇄</text>
+    </view>
+
+    <!-- Target Language Picker -->
+    <view class="select-wrapper">
+      <picker 
+        mode="selector" 
+        range="{{targetLanguageLabels}}"
+        value="{{targetLangIndex}}"
+        bindchange="onTargetLangChange"
+      >
+        <view class="picker-display">
+          <text class="picker-text">{{currentTargetLabel}}</text>
+          <text class="picker-arrow">▼</text>
+        </view>
+      </picker>
+    </view>
+  </view>
+
+  <!-- Input Text Area -->
+  <view class="input-wrapper">
+    <textarea 
+      class="input-textarea"
+      placeholder="{{uiText.inputPlaceholder}}"
+      value="{{inputText}}"
+      bindinput="onInputChange"
+      maxlength="-1"
+      auto-height="{{false}}"
+      show-confirm-bar="{{false}}"
+    />
+  </view>
+
+  <!-- Translate Button -->
+  <button 
+    class="translate-btn {{isTranslating ? 'disabled' : ''}}" 
+    disabled="{{isTranslating}}"
+    bindtap="onTranslate"
+  >
+    {{uiText.translate}}
+  </button>
+
+  <!-- Output Area -->
+  <view class="output-wrapper">
+    <view class="output-area {{outputState}}">
+      <text>{{outputText}}</text>
+    </view>
+    <!-- Copy Button (shown when translation exists) -->
+    <view 
+      class="copy-btn {{outputState === 'success' ? 'visible' : ''}}" 
+      bindtap="onCopyTranslation"
+      wx:if="{{outputState === 'success'}}"
+    >
+      <text>{{copyButtonText}}</text>
+    </view>
+  </view>
+
+  <!-- Cultural Note / Explanation -->
+  <view class="explanation" wx:if="{{culturalNote}}">
+    <text>{{culturalNote}}</text>
+  </view>
+</view>
